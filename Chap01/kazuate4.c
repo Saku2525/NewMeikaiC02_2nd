@@ -17,8 +17,8 @@ int main(void)
 	srand(time(NULL));
 
 	puts("数当てゲーム！");
-	printf("レベルを選んでください　(1)1～9　(2)1～99　(3)1～999　(4)1～9999 : ");
 	do {
+		printf("レベルを選んでください　(1)1～9　(2)1～99　(3)1～999　(4)1～9999 : ");
 		scanf("%d", &level);
 	} while ((level < 1) || (level > 4));
 	printf("1～%dの整数を当てよう！\n", levelMax[level - 1]);
