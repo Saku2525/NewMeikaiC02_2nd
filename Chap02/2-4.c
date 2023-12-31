@@ -1,5 +1,5 @@
 /********************************/
-/*	文字列表示					*/
+/*	文字列表示		*/
 /*	文字列をテロップ表示する	*/
 /********************************/
 
@@ -65,10 +65,10 @@ int main(void)
 	char *s;
 	int direction, speed, n;
 
-	printf("表示する文字列：");					scanf("%s", s);
+	printf("表示する文字列：");			scanf("%s", s);
 	printf("テロップの方向（0:左, 1:右）：");	scanf("%d", &direction);
-	printf("表示速度(ms)：");					scanf("%d", &speed);
-	printf("表示回数：");						scanf("%d", &n);
+	printf("表示速度(ms)：");			scanf("%d", &speed);
+	printf("表示回数：");				scanf("%d", &n);
 
 	telop(s, direction, speed, n);
 
