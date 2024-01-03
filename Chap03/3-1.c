@@ -1,19 +1,19 @@
-/************************************************/
-/*	じゃんけんゲーム							*/
+/********************************************************/
+/*	じゃんけんゲーム				*/
 /*	関数update_scoreと関数disp_resultをまとめる	*/
-/************************************************/
+/********************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-/********************/
+/************************/
 /*	スコア用構造体	*/
-/********************/
+/************************/
 typedef struct {
 	int draw;	/*	引き分けた回数	*/
-	int lose;	/*	勝った回数		*/
-	int win;	/*	負けた回数		*/
+	int lose;	/*	勝った回数	*/
+	int win;	/*	負けた回数	*/
 } Score;
 
 char *mHd[] = { "グー", "チョキ", "パー" };
@@ -94,12 +94,12 @@ int main(void)
 	initialize(&score);
 
 	do {
-		jyanken(&human, &comp);				/*	じゃんけん実行			*/
+		jyanken(&human, &comp);			/*	じゃんけん実行		*/
 		printf("私は%sで、あなたは%sです。\n", mHd[comp], mHd[human]);
-											/*	手を表示				*/
-		judge = ((human - comp) + 3) % 3;	/*	勝敗を判定				*/
-		update_disp(judge, &score);			/*	スコア更新/判定結果表示	*/
-		retry = confirm_retry();			/*	再挑戦するか確認		*/
+							/*	手を表示		*/
+		judge = ((human - comp) + 3) % 3;	/*	勝敗を判定		*/
+		update_disp(judge, &score);		/*	スコア更新/判定結果表示	*/
+		retry = confirm_retry();		/*	再挑戦するか確認	*/
 	} while (retry == 1);
 
 	printf("%d勝%d負%d分けでした。\n", score.win, score.lose, score.draw);
