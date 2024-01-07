@@ -1,19 +1,19 @@
-/********************************************/
-/*	じゃんけんゲーム						*/
+/************************************************/
+/*	じゃんけんゲーム			*/
 /*	コンピュータが5回ごとに後出し(n回勝負)	*/
-/********************************************/
+/************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-/********************/
+/************************/
 /*	スコア用構造体	*/
-/********************/
+/************************/
 typedef struct {
 	int draw;	/*	引き分けた回数	*/
-	int lose;	/*	勝った回数		*/
-	int win;	/*	負けた回数		*/
+	int lose;	/*	勝った回数	*/
+	int win;	/*	負けた回数	*/
 } Score;
 
 char *mHd[] = { "グー", "チョキ", "パー" };
@@ -48,7 +48,7 @@ void jyanken(int num, int *human, int *comp)
 	} while (*human < 0 || *human > 2);
 
 	if (num % 5 == 0) {
-		*comp = (*human + 2) % 3;			/*	後出し			*/
+		*comp = (*human + 2) % 3;		/*	後出し		*/
 	}
 }
 
@@ -93,10 +93,10 @@ int main(void)
 	do {
 		jyanken(num++, &human, &comp);		/*	じゃんけん実行	*/
 		printf("私は%sで、あなたは%sです。\n", mHd[comp], mHd[human]);
-											/*	手を表示		*/
-		judge = ((human - comp) + 3) % 3;	/*	勝敗を判定		*/
+							/*	手を表示	*/
+		judge = ((human - comp) + 3) % 3;	/*	勝敗を判定	*/
 		update_score(judge, &score);		/*	スコアを更新	*/
-		disp_judge(judge);					/*	判定結果を表示	*/
+		disp_judge(judge);			/*	判定結果を表示	*/
 	} while (score.win < count && score.lose < count);
 
 	printf((score.win == count) ? "\nあなたの勝ちです。\n" : "\nあなたの負けです。\n");
