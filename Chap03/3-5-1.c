@@ -70,7 +70,7 @@ void update_score(int judge, Score *score)
 void disp_judge(int judge)
 {
 	switch (judge) {
-		case 0:	printf("引き分けです。\n");		break;
+		case 0:	printf("引き分けです。\n");	break;
 		case 1:	printf("あなたの負けです。\n");	break;
 		case 2:	printf("あなたの勝ちです。\n");	break;
 	}
