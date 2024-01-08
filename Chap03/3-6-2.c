@@ -1,7 +1,7 @@
-/************************************/
-/*	じゃんけんゲーム				*/
+/****************************************/
+/*	じゃんけんゲーム		*/
 /*	履歴表示あり(勝負回数制限なし)	*/
-/************************************/
+/****************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,17 +12,17 @@
 /**********************/
 typedef struct {
 	int draw;	/*	引き分けた回数	*/
-	int lose;	/*	勝った回数		*/
-	int win;	/*	負けた回数		*/
+	int lose;	/*	勝った回数	*/
+	int win;	/*	負けた回数	*/
 } Score;
 
 /************************/
 /*---履歴表示用構造体---*/
 /************************/
 typedef struct {
-	int human;	/*	人間			*/
+	int human;	/*	人間		*/
 	int comp;	/*	コンピュータ	*/
-	int judge;	/*	勝敗			*/
+	int judge;	/*	勝敗		*/
 } History;
 
 char *mHd[] = { "グー", "チョキ", "パー" };
@@ -75,7 +75,7 @@ void update_score(int judge, Score *score)
 void disp_judge(int judge)
 {
 	switch (judge) {
-		case 0:	printf("引き分けです。\n");		break;
+		case 0:	printf("引き分けです。\n");	break;
 		case 1:	printf("あなたの負けです。\n");	break;
 		case 2:	printf("あなたの勝ちです。\n");	break;
 	}
@@ -133,17 +133,17 @@ int main(void)
 	hist = calloc(50, sizeof(History));
 
 	do {
-		jyanken(&human, &comp);								/*	じゃんけん実行		*/
+		jyanken(&human, &comp);					/*	じゃんけん実行		*/
 		printf("私は%sで、あなたは%sです。\n", mHd[comp], mHd[human]);
-															/*	手を表示			*/
-		judge = ((human - comp) + 3) % 3;					/*	勝敗を判定			*/
-		update_score(judge, &score);						/*	スコアを更新		*/
-		disp_judge(judge);									/*	判定結果を表示		*/
+									/*	手を表示		*/
+		judge = ((human - comp) + 3) % 3;			/*	勝敗を判定		*/
+		update_score(judge, &score);				/*	スコアを更新		*/
+		disp_judge(judge);					/*	判定結果を表示		*/
 		if (++num % 50 == 0) {
 			hist = (History *)realloc(hist, (num + 50) * sizeof(History));
 		}
-		set_history(&hist[num - 1], human, comp, judge);	/*	履歴格納			*/
-		retry = confirm_retry();							/*	再挑戦するか確認	*/
+		set_history(&hist[num - 1], human, comp, judge);	/*	履歴格納		*/
+		retry = confirm_retry();				/*	再挑戦するか確認	*/
 	} while (retry == 1);
 
 	printf("%d勝%d負%d分けでした。\n\n", score.win, score.lose, score.draw);
@@ -152,7 +152,7 @@ int main(void)
 	puts(" 　　あなた　　コンピュータ　　結果");
 	for (i = 0; i < num; i++) {
 		printf("%3d. ", i + 1);
-		disp_history(hist[i]);								/*	履歴表示			*/
+		disp_history(hist[i]);					/*	履歴表示		*/
 	}
 
 	free(hist);
