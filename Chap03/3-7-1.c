@@ -1,7 +1,7 @@
-/************************************/
-/*	じゃんけんゲーム				*/
+/****************************************/
+/*	じゃんけんゲーム		*/
 /*	3人(コンピュータ2人) (n回勝負)	*/
-/************************************/
+/****************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,8 +12,8 @@
 /********************/
 typedef struct {
 	int draw;	/*	引き分けた回数	*/
-	int lose;	/*	勝った回数		*/
-	int win;	/*	負けた回数		*/
+	int lose;	/*	勝った回数	*/
+	int win;	/*	負けた回数	*/
 } Score;
 
 char *mHd[] = { "グー", "チョキ", "パー" };
@@ -87,7 +87,7 @@ void update_score(int judge, Score *score)
 void disp_judge(int judge)
 {
 	switch (judge) {
-		case 0:	printf("引き分けです。\n");		break;
+		case 0:	printf("引き分けです。\n");	break;
 		case 1:	printf("あなたの負けです。\n");	break;
 		case 2:	printf("あなたの勝ちです。\n");	break;
 	}
@@ -108,13 +108,13 @@ int main(void)
 	} while (count <= 0);
 
 	do {
-		jyanken(&human, &comp1, &comp2);			/*	じゃんけん実行	*/
+		jyanken(&human, &comp1, &comp2);		/*	じゃんけん実行	*/
 		printf("コンピュータ1は%sで、コンピュータ2は%sで、あなたは%sです。\n"
-											, mHd[comp1], mHd[comp2], mHd[human]);
-													/*	手を表示		*/
-		judge = judge_winlose(human, comp1, comp2);	/*	勝敗を判定		*/
-		update_score(judge, &score);				/*	スコアを更新	*/
-		disp_judge(judge);							/*	判定結果を表示	*/
+							, mHd[comp1], mHd[comp2], mHd[human]);
+								/*	手を表示	*/
+		judge = judge_winlose(human, comp1, comp2);	/*	勝敗を判定	*/
+		update_score(judge, &score);			/*	スコアを更新	*/
+		disp_judge(judge);				/*	判定結果を表示	*/
 	} while (score.win < count && score.lose < count);
 
 	printf((score.win == count) ? "\nあなたの勝ちです。\n" : "\nあなたの負けです。\n");
