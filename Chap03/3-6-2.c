@@ -64,7 +64,7 @@ void update_score(int judge, Score *score)
 {
 	switch (judge) {
 		case 0:	score->draw++;	break;
-		case 1:	score->lose++;;	break;
+		case 1:	score->lose++;	break;
 		case 2:	score->win++;	break;
 	}
 }
