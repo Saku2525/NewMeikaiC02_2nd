@@ -1,7 +1,7 @@
-/****************************/
-/*	マスターマインド		*/
+/********************************/
+/*	マスターマインド	*/
 /*	入力回数に宣言を設ける	*/
-/****************************/
+/********************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,13 +9,13 @@
 #include <ctype.h>
 #include <string.h>
 
-/****************************/
+/********************************/
 /*	相違なる4個の数字生成	*/
-/****************************/
+/********************************/
 void make4digits(int x[])
 {
 	int i, j;
-	int val;							/*	0～9の乱数				*/
+	int val;			/*	0～9の乱数	*/
 
 	for (i = 0; i < 4; i++) {
 		do {
@@ -30,9 +30,9 @@ void make4digits(int x[])
 	}
 }
 
-/********************/
+/************************/
 /*	入力回数設定	*/
-/********************/
+/************************/
 int set_inputcount(void)
 {
 	int count;
@@ -44,26 +44,26 @@ int set_inputcount(void)
 	return count;
 }
 
-/************************/
+/********************************/
 /*	入力文字チェック	*/
-/************************/
+/********************************/
 int check(const char s[])
 {
 	int i, j;
 	int len;
 
 	len = strlen(s);
-	if (len != 4) {						/*	文字数チェック			*/
+	if (len != 4) {				/*	文字数チェック		*/
 		printf("きちんと4文字で入力してください。\n");
 		return 0;
 	}
 
 	for (i = 0; i < len; i++) {
-		if (isdigit(s[i] == 0)) {		/*	文字チェック			*/
+		if (isdigit(s[i] == 0)) {	/*	文字チェック		*/
 			printf("数字以外の文字を入力してください。\n");
 			return 0;
 		}
-		for (j = 0; j < i; j++) {		/*	重複チェック			*/
+		for (j = 0; j < i; j++) {	/*	重複チェック		*/
 			if (s[i] == s[j]) {
 				printf("同一の数字を複数入力しないでください。\n");
 				return 0;
@@ -74,9 +74,9 @@ int check(const char s[])
 	return 1;
 }
 
-/************************/
+/********************************/
 /*	ヒット/ブロー判定	*/
-/************************/
+/********************************/
 void judge(const char s[], const int x[], int *hit, int *blow)
 {
 	int i, j;
@@ -95,9 +95,9 @@ void judge(const char s[], const int x[], int *hit, int *blow)
 	}
 }
 
-/********************/
+/************************/
 /*	判定結果表示	*/
-/********************/
+/************************/
 void disp_result(int hit, int total)
 {
 	if (hit == 4) {
@@ -121,7 +121,7 @@ int main(void)
 	int try_no = 0, count;
 	int hit, blow;
 	int ans[4];
-	char buff[10];						/*	入力文字				*/
+	char buff[10];				/*	入力文字		*/
 	time_t start, end;
 
 	srand(time(NULL));
@@ -132,27 +132,27 @@ int main(void)
 	puts("　4307のように連続して入力してください。");
 	puts("　スペース文字などを入力してはいけません。\n");
 
-	make4digits(ans);					/*	相違なる4個の数字生成	*/
-	count = set_inputcount();			/*	入力回数設定			*/
-	start = time(NULL);					/*	開始時刻				*/
+	make4digits(ans);			/*	相違なる4個の数字生成	*/
+	count = set_inputcount();		/*	入力回数設定		*/
+	start = time(NULL);			/*	開始時刻		*/
 
 	do {
-		/****************/
+		/************************/
 		/*	数字の入力	*/
-		/****************/
+		/************************/
 		printf("残り入力回数：%d回\n", count--);
 		do {
 			printf("入力してください：");
 			scanf("%s", buff);
-			chk = check(buff);			/*	入力文字チェック		*/
+			chk = check(buff);	/*	入力文字チェック	*/
 		} while (chk == 0);
 
 		try_no++;
-		judge(buff, ans, &hit, &blow);	/*	ヒット/ブロー判定		*/
-		disp_result(hit, (hit + blow));	/*	判定結果表示			*/
+		judge(buff, ans, &hit, &blow);	/*	ヒット/ブロー判定	*/
+		disp_result(hit, (hit + blow));	/*	判定結果表示		*/
 	} while (hit < 4 && count > 0);
 
-	end = time(NULL);					/*	終了時刻				*/
+	end = time(NULL);			/*	終了時刻		*/
 
 	if (hit == 4) {
 		puts("正解です。");
