@@ -1,7 +1,7 @@
-/************************/
+/********************************/
 /*	マスターマインド	*/
 /*	数字の重複を許す	*/
-/************************/
+/********************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,13 +9,13 @@
 #include <ctype.h>
 #include <string.h>
 
-/********************/
+/************************/
 /*	4個の数字生成	*/
-/********************/
+/************************/
 void make4digits(int x[])
 {
 	int i, j;
-	int val;							/*	0～9の乱数				*/
+	int val;						/*	0～9の乱数		*/
 
 	for (i = 0; i < 4; i++) {
 		val = rand() % 10;
@@ -23,22 +23,22 @@ void make4digits(int x[])
 	}
 }
 
-/************************/
+/*******************************/
 /*	入力文字チェック	*/
-/************************/
+/*******************************/
 int check(const char s[])
 {
 	int i, j;
 	int len;
 
 	len = strlen(s);
-	if (len != 4) {						/*	文字数チェック			*/
+	if (len != 4) {						/*	文字数チェック		*/
 		printf("きちんと4文字で入力してください。\n");
 		return 0;
 	}
 
 	for (i = 0; i < len; i++) {
-		if (isdigit(s[i] == 0)) {		/*	文字チェック			*/
+		if (isdigit(s[i] == 0)) {			/*	文字チェック		*/
 			printf("数字以外の文字を入力してください。\n");
 			return 0;
 		}
@@ -47,9 +47,9 @@ int check(const char s[])
 	return 1;
 }
 
-/************************/
+/********************************/
 /*	ヒット/ブロー判定	*/
-/************************/
+/********************************/
 void judge(const char s[], const int x[], int *hit, int *blow)
 {
 	int i, j;
@@ -74,9 +74,9 @@ void judge(const char s[], const int x[], int *hit, int *blow)
 	}
 }
 
-/********************/
+/************************/
 /*	判定結果表示	*/
-/********************/
+/************************/
 void disp_result(int hit, int blow)
 {
 	if (hit == 4) {
@@ -100,7 +100,7 @@ int main(void)
 	int try_no = 0;
 	int hit, blow;
 	int ans[4];
-	char buff[10];						/*	入力文字			*/
+	char buff[10];						/*	入力文字		*/
 	time_t start, end;
 
 	srand(time(NULL));
@@ -112,13 +112,13 @@ int main(void)
 	puts("　スペース文字などを入力してはいけません。\n");
 
 	make4digits(ans);					/*	4個の数字生成		*/
-	start = time(NULL);					/*	開始時刻			*/
+	start = time(NULL);					/*	開始時刻		*/
 	printf("%d%d%d%d", ans[0], ans[1], ans[2], ans[3]);
 
 	do {
-		/****************/
+		/************************/
 		/*	数字の入力	*/
-		/****************/
+		/************************/
 		do {
 			printf("入力してください：");
 			scanf("%s", buff);
@@ -126,11 +126,11 @@ int main(void)
 		} while (chk == 0);
 
 		try_no++;
-		judge(buff, ans, &hit, &blow);	/*	ヒット/ブロー判定	*/
-		disp_result(hit, blow);			/*	判定結果表示		*/
+		judge(buff, ans, &hit, &blow);			/*	ヒット/ブロー判定	*/
+		disp_result(hit, blow);				/*	判定結果表示		*/
 	} while (hit < 4);
 
-	end = time(NULL);					/*	終了時刻			*/
+	end = time(NULL);					/*	終了時刻		*/
 
 	printf("%d回かかりました。\n所要時間は%.1fでした。\n", try_no, difftime(end, start));
 
