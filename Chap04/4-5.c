@@ -1,7 +1,7 @@
-/************************************/
-/*	マスターマインド				*/
+/****************************************/
+/*	マスターマインド		*/
 /*	8色の色から4色の並びを当てる	*/
-/************************************/
+/****************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,13 +21,13 @@ typedef enum {
 	Brown,
 } Color;
 
-/****************************/
+/********************************/
 /*	相違なる4個の数字生成	*/
-/****************************/
+/********************************/
 void make4digits(int x[])
 {
 	int i, j;
-	int val;									/*	0～9の乱数			*/
+	int val;						/*	0～9の乱数		*/
 
 	for (i = 0; i < 4; i++) {
 		do {
@@ -42,9 +42,9 @@ void make4digits(int x[])
 	}
 }
 
-/************************/
+/********************************/
 /*	入力文字チェック	*/
-/************************/
+/********************************/
 int check(int input, int buff[], int num)
 {
 	int i;
@@ -53,8 +53,8 @@ int check(int input, int buff[], int num)
 
 	/*	文字チェック	*/
 	if (isdigit(input) == 0) {
-		if (input == 0x03) {					/*	Ctrl + C			*/
-			exit(0);							/*	強制終了			*/
+		if (input == 0x03) {				/*	Ctrl + C		*/
+			exit(0);				/*	強制終了		*/
 		}
 		return 0;
 	}
@@ -67,23 +67,23 @@ int check(int input, int buff[], int num)
 	}
 	
 	switch ((Color)input - '0') {
-		case White:		printf("白 ");	break;
-		case Black:		printf("黒 ");	break;
-		case Red:		printf("赤 ");	break;
-		case Blue:		printf("青 ");	break;
+		case White:	printf("白 ");	break;
+		case Black:	printf("黒 ");	break;
+		case Red:	printf("赤 ");	break;
+		case Blue:	printf("青 ");	break;
 		case Yellow:	printf("黄 ");	break;
-		case Green:		printf("緑 ");	break;
+		case Green:	printf("緑 ");	break;
 		case Orange:	printf("橙 ");	break;
-		case Brown:		printf("茶 ");	break;
-		default:		ret = 0;		break;
+		case Brown:	printf("茶 ");	break;
+		default:	ret = 0;	break;
 	}
 
 	return ret;
 }
 
-/************************/
+/********************************/
 /*	ヒット/ブロー判定	*/
-/************************/
+/********************************/
 void judge(const int buff[], const int x[], int *hit, int *blow)
 {
 	int i, j;
@@ -102,9 +102,9 @@ void judge(const int buff[], const int x[], int *hit, int *blow)
 	}
 }
 
-/********************/
+/************************/
 /*	判定結果表示	*/
-/********************/
+/************************/
 void disp_result(int hit, int total)
 {
 	if (hit == 4) {
@@ -128,7 +128,7 @@ int main(void)
 	int color, try_no = 0;
 	int hit, blow;
 	int ans[4];
-	int buff[4];								/*	入力文字			*/
+	int buff[4];						/*	入力文字		*/
 	time_t start, end;
 
 	srand(time(NULL));
@@ -139,8 +139,8 @@ int main(void)
 	puts("　4307のように連続して入力してください。");
 	puts("　スペース文字などを入力してはいけません。\n");
 
-	make4digits(ans);							/*	相違なる4色生成		*/
-	start = time(NULL);							/*	開始時刻			*/
+	make4digits(ans);					/*	相違なる4色生成		*/
+	start = time(NULL);					/*	開始時刻		*/
 
 	do {
 		/****************/
@@ -161,7 +161,7 @@ int main(void)
 		disp_result(hit, (hit + blow));			/*	判定結果表示		*/
 	} while (hit < 4);
 
-	end = time(NULL);							/*	終了時刻			*/
+	end = time(NULL);					/*	終了時刻		*/
 
 	printf("%d回かかりました。\n所要時間は%.1fでした。\n", try_no, difftime(end, start));
 
