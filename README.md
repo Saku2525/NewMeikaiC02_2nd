@@ -4,3 +4,5 @@ NewMeikaiC02_2nd
 
 新版　明解C言語中級編
 https://www.bohyoh.com/Books/MeikaiC02/index.html
+
+※コードに間違いや改善の余地のあると思いますが、ご容赦ください。
