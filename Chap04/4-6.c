@@ -1,8 +1,8 @@
-/************************************************************/
-/*	マスターマインド										*/
+/****************************************************************/
+/*	マスターマインド					*/
 /*	人間とコンピュータが同時に出題し、交互にヒントを与え	*/
-/*	先に当てたほうの勝ち									*/
-/************************************************************/
+/*	先に当てたほうの勝ち					*/
+/****************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,15 +17,15 @@ typedef enum {
 	Hit,
 } Result;
 
-Result mResult[][10] = { None };		/*	コンピュータ履歴		*/
+Result mResult[][10] = { None };					/*	コンピュータ履歴		*/
 
-/****************************/
+/********************************/
 /*	相違なる4個の数字生成	*/
-/****************************/
+/********************************/
 void make4digits(int x[])
 {
 	int i, j;
-	int val;							/*	0～9の乱数				*/
+	int val;							/*	0～9の乱数			*/
 
 	for (i = 0; i < 4; i++) {
 		do {
@@ -40,26 +40,26 @@ void make4digits(int x[])
 	}
 }
 
-/************************/
+/********************************/
 /*	入力文字チェック	*/
-/************************/
+/********************************/
 int check(const char s[])
 {
 	int i, j;
 	int len;
 
 	len = strlen(s);
-	if (len != 4) {						/*	文字数チェック			*/
+	if (len != 4) {							/*	文字数チェック			*/
 		printf("きちんと4文字で入力してください。\n");
 		return 0;
 	}
 
 	for (i = 0; i < len; i++) {
-		if (isdigit(s[i] == 0)) {		/*	文字チェック			*/
+		if (isdigit(s[i] == 0)) {				/*	文字チェック			*/
 			printf("数字以外の文字を入力してください。\n");
 			return 0;
 		}
-		for (j = 0; j < i; j++) {		/*	重複チェック			*/
+		for (j = 0; j < i; j++) {				/*	重複チェック			*/
 			if (s[i] == s[j]) {
 				printf("同一の数字を複数入力しないでください。\n");
 				return 0;
@@ -70,9 +70,9 @@ int check(const char s[])
 	return 1;
 }
 
-/************************/
+/********************************/
 /*	コンピュータ入力	*/
-/************************/
+/********************************/
 void input_comp(char comp[])
 {
 	int i, j;
@@ -114,7 +114,7 @@ void input_comp(char comp[])
 			do {
 				retry = 1;
 				num = rand() % 10;
-				for (j = 0; j < 4; j++) {			/*	重複チェック	*/
+				for (j = 0; j < 4; j++) {		/*	重複チェック			*/
 					if (num == comp[j]) {
 						retry = 0;
 						break;
@@ -127,9 +127,9 @@ void input_comp(char comp[])
 	comp[i] = '\0';
 }
 
-/****************************/
+/********************************/
 /*	ヒット/ブロー判定(人間)	*/
-/****************************/
+/********************************/
 void judge_human(const char s[], const int x[], int* hit, int hitNum[], int* blow, int blowNum[])
 {
 	int i, j;
@@ -151,9 +151,9 @@ void judge_human(const char s[], const int x[], int* hit, int hitNum[], int* blo
 	}
 }
 
-/****************************/
+/********************************/
 /*	コンピュータ履歴設定	*/
-/****************************/
+/********************************/
 void set_compresult(Result res, int index, int num)
 {
 	int i;
@@ -183,9 +183,9 @@ void set_compresult(Result res, int index, int num)
 	}
 }
 
-/************************************/
+/****************************************/
 /*	ヒット/ブロー判定(コンピュータ)	*/
-/************************************/
+/****************************************/
 void judge_comp(const char s[], const char x[], int* chit, int* cblow)
 {
 	int i, j;
@@ -207,9 +207,9 @@ void judge_comp(const char s[], const char x[], int* chit, int* cblow)
 	}
 }
 
-/********************/
+/************************/
 /*	判定結果表示	*/
-/********************/
+/************************/
 void disp_result(int hit, int total)
 {
 	if (hit == 4) {
@@ -231,9 +231,9 @@ void disp_result(int hit, int total)
 	fflush(stdout);
 }
 
-/****************/
+/************************/
 /*	ヒント表示	*/
-/****************/
+/************************/
 void disp_hint(const char buff[], const int ans[], const char comp[], const int hitNum[], const int blowNum[], int num)
 {
 	int no, i;
@@ -247,7 +247,7 @@ void disp_hint(const char buff[], const int ans[], const char comp[], const int 
 	scanf("%d", &no);
 
 	switch (no) {
-	case 0:			/*	先頭の1文字を教える							*/
+	case 0:			/*	先頭の1文字を教える				*/
 		printf("1個目の数字は\"%d\"です。\n", ans[0]);
 		mResult[0][comp[0] - '0'] = Hit;
 		for (i = 1; i < 4; i++) {
@@ -279,7 +279,6 @@ void disp_hint(const char buff[], const int ans[], const char comp[], const int 
 	default:
 		break;
 	}
-	fflush(stdout);
 }
 
 int main(void)
@@ -288,9 +287,9 @@ int main(void)
 	int try_no = 0;
 	int hit, blow, chit, cblow;
 	int ans[4];
-	char comp[10];						/*	入力文字(コンピュータへの出題)	*/
-	char buff[10];						/*	入力文字(人間解答)				*/
-	char cbuff[5];						/*	入力文字(コンピュータ解答)		*/
+	char comp[10];							/*	入力文字(コンピュータへの出題)	*/
+	char buff[10];							/*	入力文字(人間解答)		*/
+	char cbuff[5];							/*	入力文字(コンピュータ解答)	*/
 	int hitNum[4], blowNum[4];
 	time_t start, end;
 
@@ -304,7 +303,7 @@ int main(void)
 	puts("　コンピュータにも数字を出題し、先に当てたほうを勝者とします。\n");
 
 	/*	解答作成	*/
-	make4digits(ans);					/*	相違なる4個の数字生成	*/
+	make4digits(ans);						/*	相違なる4個の数字生成		*/
 	do {
 		printf("コンピュータに出題する4個の数字を入力してください:");
 		scanf("%s", comp);
@@ -317,15 +316,15 @@ int main(void)
 		}
 	}
 
-	start = time(NULL);					/*	開始時刻				*/
+	start = time(NULL);						/*	開始時刻			*/
 	do {
 		/*	数字の入力	*/
 		do {
 			printf("入力してください：");
 			scanf("%s", buff);
-			chk = check(buff);			/*	入力文字チェック		*/
+			chk = check(buff);				/*	入力文字チェック		*/
 		} while (chk == 0);
-		input_comp(cbuff);				/*	コンピュータ入力		*/
+		input_comp(cbuff);					/*	コンピュータ入力		*/
 
 		for (i = 0; i < 4; i++) {
 			hitNum[i] = blowNum[i] = 0;
@@ -333,17 +332,17 @@ int main(void)
 		try_no++;
 		puts("あなた");
 		judge_human(buff, ans, &hit, hitNum, &blow, blowNum);	/*	ヒット/ブロー判定(人間)		*/
-		disp_result(hit, (hit + blow));	/*	判定結果表示			*/
+		disp_result(hit, (hit + blow));				/*	判定結果表示			*/
 		puts("コンピュータ");
 		printf("%s", cbuff);
-		judge_comp(cbuff, comp, &chit, &cblow);	/*	ヒット/ブロー判定		*/
-		disp_result(chit, (chit + cblow));	/*	判定結果表示			*/
+		judge_comp(cbuff, comp, &chit, &cblow);			/*	ヒット/ブロー判定		*/
+		disp_result(chit, (chit + cblow));			/*	判定結果表示			*/
 		/**/
 		if (hit < 4 && chit < 4) {
 			disp_hint(buff, ans, comp, hitNum, blowNum, sizeof(ans) / sizeof(ans[0]));
 		}
 	} while (hit < 4 && chit < 4);
-	end = time(NULL);					/*	終了時刻				*/
+	end = time(NULL);						/*	終了時刻			*/
 
 	if (hit == 4) {
 		puts("あなたの勝ちです。");
