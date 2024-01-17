@@ -1,26 +1,26 @@
-/****************************************/
-/*	数当てゲーム						*/
+/************************************************/
+/*	数当てゲーム				*/
 /*	異なる桁が同一である数字を出さない	*/
-/****************************************/
+/************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_STAGE 10		/*	最大入力回数	*/
-#define MAX_DIGITS 3		/*	最大桁数		*/
+#define MAX_STAGE 10			/*	最大入力回数	*/
+#define MAX_DIGITS 3			/*	最大桁数	*/
 
 int main(void)
 {
 	int i, j, chk;
 	char rNum;
 	char digits[MAX_DIGITS + 1];
-	int ans;				/*	回答(乱数)		*/
-	int no;					/*	読み込んだ数	*/
-	int num[MAX_STAGE];		/*	入力履歴		*/
-	int stage = 0;			/*	入力回数		*/
+	int ans;			/*	回答(乱数)	*/
+	int no;				/*	読み込んだ数	*/
+	int num[MAX_STAGE];		/*	入力履歴	*/
+	int stage = 0;			/*	入力回数	*/
 
-	srand(time(NULL));		/*	種を設定		*/
+	srand(time(NULL));		/*	種を設定	*/
 
 	/*	数設定	*/
 	for (i = 0; i < MAX_DIGITS; i++) {
