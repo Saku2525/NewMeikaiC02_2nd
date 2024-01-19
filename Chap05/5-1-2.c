@@ -54,6 +54,7 @@ int main(void)
 	} while ((level < LEVEL_MIN) || (level > LEVEL_MAX));
 
 	printf("%d桁の数値を記憶しましょう！！\n", level);
+	printf("数値の入力は逆順で行ってください。\n");
 
 	start = time(NULL);
 
