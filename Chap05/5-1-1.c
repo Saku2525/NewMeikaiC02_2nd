@@ -45,6 +45,7 @@ int main(void)
 
 	srand(time(NULL));
 	printf("%d桁の数値を記憶しよう！！\n", MAX_DIGIT);
+	printf("数値の入力は逆順で行ってください。\n");
 
 	start = time(NULL);
 
