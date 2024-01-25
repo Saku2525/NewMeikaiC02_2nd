@@ -1,5 +1,5 @@
 /****************************************/
-/*	じゃんけんゲーム					*/
+/*	じゃんけんゲーム		*/
 /*	最後の10回の手や勝敗の履歴を保存	*/
 /****************************************/
 
@@ -14,8 +14,8 @@
 /**********************/
 typedef struct {
 	int draw;	/*	引き分けた回数	*/
-	int lose;	/*	勝った回数		*/
-	int win;	/*	負けた回数		*/
+	int lose;	/*	勝った回数	*/
+	int win;	/*	負けた回数	*/
 } Score;
 
 /************************/
@@ -23,8 +23,8 @@ typedef struct {
 /************************/
 typedef struct {
 	int comp;	/*	コンピュータ	*/
-	int human;	/*	人間			*/
-	int judge;	/*	判定			*/
+	int human;	/*	人間		*/
+	int judge;	/*	判定		*/
 } History;
 
 /******************/
@@ -91,7 +91,7 @@ void set_history(History *hist, int comp, int human, int judge)
 void disp_judge(int judge)
 {
 	switch (judge) {
-		case 0:	printf("引き分けです。\n");		break;
+		case 0:	printf("引き分けです。\n");	break;
 		case 1:	printf("あなたの負けです。\n");	break;
 		case 2:	printf("あなたの勝ちです。\n");	break;
 	}
@@ -129,19 +129,19 @@ int main(void)
 	initialize(&score);
 
 	do {
-		jyanken(&human, &comp);				/*	じゃんけん実行		*/
+		jyanken(&human, &comp);						/*	じゃんけん実行		*/
 		printf("私は%sで、あなたは%sです。\n", mHd[comp], mHd[human]);
-											/*	手を表示			*/
-		judge = ((human - comp) + 3) % 3;	/*	勝敗を判定			*/
-		update_score(judge, &score);		/*	スコアを更新		*/
-		disp_judge(judge);					/*	判定結果を表示		*/
+										/*	手を表示		*/
+		judge = ((human - comp) + 3) % 3;				/*	勝敗を判定		*/
+		update_score(judge, &score);					/*	スコアを更新		*/
+		disp_judge(judge);						/*	判定結果を表示		*/
 		set_history(&hist[count++], comp, human, judge);
-											/*	履歴データ格納		*/
+										/*	履歴データ格納		*/
 		if (count == MAX_COUNT) {
 			count = 0;
 			maxFlag = 1;
 		}
-		retry = confirm_retry();			/*	再挑戦するか確認	*/
+		retry = confirm_retry();					/*	再挑戦するか確認	*/
 	} while (retry == 1);
 
 	printf("%d勝%d負%d分けでした。\n\n", score.win, score.lose, score.draw);
@@ -150,15 +150,15 @@ int main(void)
 	puts("--------------------------");
 	if (maxFlag == 0) {
 		for (i = 0; i < count; i++) {
-			disp_history(hist[i]);			/*	履歴データ表示		*/
+			disp_history(hist[i]);					/*	履歴データ表示		*/
 		}
 	} else {
 		for (i = 0; i < MAX_COUNT; i++) {
 			if (count + i >= MAX_COUNT) {
-				disp_history(hist[i - (MAX_COUNT - count)]);			/*	履歴データ表示		*/
+				disp_history(hist[i - (MAX_COUNT - count)]);	/*	履歴データ表示		*/
 				continue;
 			}
-			disp_history(hist[count + i]);			/*	履歴データ表示		*/
+			disp_history(hist[count + i]);				/*	履歴データ表示		*/
 		}
 	}
 
