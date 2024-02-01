@@ -1,6 +1,6 @@
-/********************/
+/************************/
 /*	日付当てゲーム	*/
-/********************/
+/************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,58 +87,57 @@ int main(void)
 		}
 	}
 
-		do {
-			printf("残り%d回。いつかな(YYYYMMDD)：", maxstage - stage);
-				scanf("%s", buf);
-				if (strlen(buf) != 8) {
-					printf("入力ミスです。\n");
-					continue;
-				}
-
-				/* 年チェック */
-				work[0] = buf[0];
-				work[1] = buf[1];
-				work[2] = buf[2];
-				work[3] = buf[3];
-			work[4] = '\0';
-			num = atoi(work);
-			if ((num < 1900) || (num > current->tm_year + 1900)) {
-				printf("年の値が不正です。\n");
-				continue;
-			}
-
-			/* 月チェック */
-			work[0] = buf[4];
-			work[1] = buf[5];
-			work[2] = '\0';
-			if (get_month(work) == -1) {
-				printf("月の値が不正です。\n");
-				continue;
-			}
-
-			strcpy(hist[stage++], buf);
-			judge = strcmp(buf, ans);
-			if (judge > 0)	printf("もっと小さいよ。\a\n");
-			if (judge < 0)	printf("もっと大きいよ。\a\n");
-		} while ((strcmp(buf, ans) != 0) && (stage < maxstage));
-
-		if (strcmp(buf, ans) != 0) {
-			printf("残念。正解は、\"%4.4s年%2.2s月%2.2s日\"でした。\n", year, month, day);
-		}
-		else {
-			printf("正解です。\n");
-			printf("%d回で当たりましたね。\n", stage);
+	do {
+		printf("残り%d回。いつかな(YYYYMMDD)：", maxstage - stage);
+		scanf("%s", buf);
+		if (strlen(buf) != 8) {
+			printf("入力ミスです。\n");
+			continue;
 		}
 
-		puts("\n---入力履歴---");
-		for (i = 0; i < stage; i++) {
-			printf(" %2d : %4.4s年%2.2s月%2.2s日\n", i, &hist[i][0], &hist[i][4], &hist[i][6]);
+		/* 年チェック */
+		work[0] = buf[0];
+		work[1] = buf[1];
+		work[2] = buf[2];
+		work[3] = buf[3];
+		work[4] = '\0';
+		num = atoi(work);
+		if ((num < 1900) || (num > current->tm_year + 1900)) {
+			printf("年の値が不正です。\n");
+			continue;
 		}
 
-		for (i = 0; i < maxstage; i++) {
-			free(hist[i]);
+		/* 月チェック */
+		work[0] = buf[4];
+		work[1] = buf[5];
+		work[2] = '\0';
+		if (get_month(work) == -1) {
+			printf("月の値が不正です。\n");
+			continue;
 		}
-		free(hist);
 
-		return 0;
+		strcpy(hist[stage++], buf);
+		judge = strcmp(buf, ans);
+		if (judge > 0)	printf("もっと小さいよ。\a\n");
+		if (judge < 0)	printf("もっと大きいよ。\a\n");
+	} while ((strcmp(buf, ans) != 0) && (stage < maxstage));
+
+	if (strcmp(buf, ans) != 0) {
+		printf("残念。正解は、\"%4.4s年%2.2s月%2.2s日\"でした。\n", year, month, day);
+	} else {
+		printf("正解です。\n");
+		printf("%d回で当たりましたね。\n", stage);
+	}
+
+	puts("\n---入力履歴---");
+	for (i = 0; i < stage; i++) {
+		printf(" %2d : %4.4s年%2.2s月%2.2s日\n", i, &hist[i][0], &hist[i][4], &hist[i][6]);
+	}
+
+	for (i = 0; i < maxstage; i++) {
+		free(hist[i]);
+	}
+	free(hist);
+
+	return 0;
 }
